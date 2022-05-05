@@ -1,0 +1,26 @@
+{
+  "name": "storeapi",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.18.1",
+    "express-async-errors": "^3.1.1",
+    "mongoose": "^6.3.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Asher-Z-Engel/StoreAPI.git"
+  },
+  "author": "Asher-Z-Engel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Asher-Z-Engel/StoreAPI/issues"
+  },
+  "homepage": "https://github.com/Asher-Z-Engel/StoreAPI#readme",
+  "description": ""
+}
