@@ -1,9 +1,8 @@
 const Product = require('../models/Product')
 
 const getAllProductsTest = async (req, res) => {
-  const products = await Product.find({ name: { $regex: 'desk', $options: 'i' } })
-    .select('name price')
-    .sort('name price')
+  const products = await Product.find({ price: { $gt: 40, $lte: 100 }, rating: {$gte: 4.5} })
+  .sort('price')
   res.status(200).json({success: true, products, totalProducts: products.length})
 }
 
@@ -34,12 +33,17 @@ const getAllProducts = async (req, res) => {
     const regex = /\b(<|<=|=|>|>=)\b/g
     filters.forEach(filter => {
       const newFilter = filter.replace(regex, (match) => `-${operatorMap[match]}-`)
-      const [field, operator, value] = newFilter.split('-')
+      console.log(newFilter)
+      const [field, operator1, value1, operator2, value2] = newFilter.split('-')
       if (options.includes(field)) {
-        queryObject[field] = { [operator]: value }
+        queryObject[field] = { [operator1]: value1 }
+        if (operator2 && value2) {
+          queryObject[field][operator2] = value2
+        }
       }
     })
   }
+  console.log(queryObject)
   // filter search results based on other parameters
   let query = Product.find(queryObject)
   const limit = Number(req.query.limit) || 10
